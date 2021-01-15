@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "954588712011",
+    "project_id": "tudo-seu-vet",
+    "storage_bucket": "tudo-seu-vet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954588712011:android:fdf471b99090875d3ad1ce",
+        "android_client_info": {
+          "package_name": "com.example.tudo_seu_vet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954588712011-70lcrkk254fjvbrbaebs3l41mps9pnee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIJkn29sa2zdEEGnv6HVXTJmpibn_EM_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954588712011-70lcrkk254fjvbrbaebs3l41mps9pnee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
