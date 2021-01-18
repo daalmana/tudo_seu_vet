@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 import '../../src/models/contacts.dart';
 import '../../src/providers/contact_provider.dart';
 import '../../src/screens/contact_edit_screen.dart';
 import '../../src/utils/app_localizations.dart';
 
-class ContactListScreen extends StatelessWidget {
+class ContactListScreen extends StatefulWidget {
   static const routeName = '/contact-list';
 
+  @override
+  _ContactListScreenState createState() => _ContactListScreenState();
+}
+
+class _ContactListScreenState extends State<ContactListScreen> {
   @override
   Widget build(BuildContext context) {
     var contactProvider = Provider.of<ContactProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context).translate("Contacts"),
+          AppLocalizations.of(context).translate(
+            "Contacts",
+          ),
         ),
       ),
       body: StreamBuilder<List<Contact>>(
@@ -24,31 +32,117 @@ class ContactListScreen extends StatelessWidget {
           return ListView.separated(
             itemCount: snapshot.hasData ? snapshot.data.length : 0,
             separatorBuilder: (BuildContext context, int index) => Divider(
-              thickness: 1.5,
+              thickness: 1.3,
             ),
             itemBuilder: (context, index) {
-              return ListTile(
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 0.0, horizontal: 15),
-                dense: true,
-                title: Text(
-                  snapshot.data[index].name,
-                  style: Theme.of(context).textTheme.bodyText1,
+              return Slidable(
+                dismissal: SlidableDismissal(
+                  child: SlidableDrawerDismissal(),
+                  closeOnCanceled: true,
+                  onWillDismiss: (actionType) {
+                    return showDialog<bool>(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text(
+                            AppLocalizations.of(context).translate(
+                              "Delete",
+                            ),
+                          ),
+                          content: Text(
+                            AppLocalizations.of(context).translate(
+                              "Contact will be deleted",
+                            ),
+                          ),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text(
+                                AppLocalizations.of(context).translate(
+                                  "Cancel",
+                                ),
+                              ),
+                              onPressed: () => Navigator.of(context).pop(false),
+                            ),
+                            FlatButton(
+                              child: Text(
+                                'Ok',
+                              ),
+                              onPressed: () {
+                                contactProvider.removeContact(
+                                    snapshot.data[index].contactId);
+                                Navigator.of(context).pop(true);
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                 ),
-                subtitle: Text(
-                  snapshot.data[index].phone,
-                  style: Theme.of(context).textTheme.subtitle2,
-                  textAlign: TextAlign.start,
+                actionPane: SlidableDrawerActionPane(),
+                actionExtentRatio: 0.25,
+                key: Key(snapshot.data.toString()),
+                child: ListTile(
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 0.0, horizontal: 15),
+                  dense: true,
+                  title: Text(
+                    snapshot.data[index].name,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  subtitle: Text(
+                    snapshot.data[index].phone,
+                    style: Theme.of(context).textTheme.subtitle2,
+                    textAlign: TextAlign.start,
+                  ),
                 ),
-                onTap: () {
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => ContactDetailScreen(
-                  //       contact: snapshot.data[index],
-                  //     ),
-                  //   ),
-                  // );
-                },
+                secondaryActions: <Widget>[
+                  IconSlideAction(
+                    caption: AppLocalizations.of(context).translate(
+                      "Delete",
+                    ),
+                    color: Colors.red,
+                    icon: Icons.delete,
+                    onTap: () {
+                      return showDialog<bool>(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text(
+                              AppLocalizations.of(context).translate(
+                                "Delete",
+                              ),
+                            ),
+                            content: Text(
+                              AppLocalizations.of(context).translate(
+                                "Contact will be deleted",
+                              ),
+                            ),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text(
+                                  AppLocalizations.of(context).translate(
+                                    "Cancel",
+                                  ),
+                                ),
+                                onPressed: () =>
+                                    Navigator.of(context).pop(false),
+                              ),
+                              FlatButton(
+                                child: Text('Ok'),
+                                onPressed: () {
+                                  contactProvider.removeContact(
+                                      snapshot.data[index].contactId);
+                                  Navigator.of(context).pop(true);
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ],
               );
             },
           );

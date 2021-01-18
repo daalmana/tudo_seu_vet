@@ -53,40 +53,44 @@ class _HomePageState extends State<HomePage> {
             fit: BoxFit.cover,
           ),
         ),
-        child: GridView.count(
-          crossAxisCount: 3,
-          children: [
-            HomePageMenuCard(
-              icons: Icons.date_range,
-              text: 'Agenda',
-              onTab: '',
-            ),
-            HomePageMenuCard(
-              icons: Icons.add_business_rounded,
-              text: AppLocalizations.of(context).translate("+ Consult"),
-              onTab: '',
-            ),
-            HomePageMenuCard(
-              text: AppLocalizations.of(context).translate("Clients"),
-              icons: Icons.person,
-              onTab: ContactListScreen.routeName,
-            ),
-            HomePageMenuCard(
-              icons: Icons.pets,
-              text: AppLocalizations.of(context).translate("Patients"),
-              onTab: '',
-            ),
-            HomePageMenuCard(
-              icons: Icons.corporate_fare,
-              text: AppLocalizations.of(context).translate("Consults"),
-              onTab: '',
-            ),
-            HomePageMenuCard(
-              icons: Icons.attach_money,
-              text: AppLocalizations.of(context).translate("Payments"),
-              onTab: '',
-            ),
-          ],
+        child: Container(
+          color: Colors.grey.withOpacity(0.3),
+          child: GridView.count(
+            reverse: true,
+            crossAxisCount: 3,
+            children: [
+              HomePageMenuCard(
+                icons: Icons.date_range,
+                text: 'Agenda',
+                onTab: '',
+              ),
+              HomePageMenuCard(
+                icons: Icons.add_business_rounded,
+                text: AppLocalizations.of(context).translate("+ Consult"),
+                onTab: '',
+              ),
+              HomePageMenuCard(
+                text: AppLocalizations.of(context).translate("Clients"),
+                icons: Icons.person,
+                onTab: ContactListScreen.routeName,
+              ),
+              HomePageMenuCard(
+                icons: Icons.pets,
+                text: AppLocalizations.of(context).translate("Patients"),
+                onTab: '',
+              ),
+              HomePageMenuCard(
+                icons: Icons.corporate_fare,
+                text: AppLocalizations.of(context).translate("Consults"),
+                onTab: '',
+              ),
+              HomePageMenuCard(
+                icons: Icons.attach_money,
+                text: AppLocalizations.of(context).translate("Payments"),
+                onTab: '',
+              ),
+            ],
+          ),
         ),
       ),
     );

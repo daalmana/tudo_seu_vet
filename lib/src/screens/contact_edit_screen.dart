@@ -128,241 +128,29 @@ class _ContactEditScreenState extends State<ContactEditScreen> {
             )
           ],
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Form(
-              key: _formKey,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: TextFormField(
-                      controller: nameController,
-                      keyboardType: TextInputType.name,
-                      style: Theme.of(context).textTheme.bodyText2,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        filled: true,
-                        fillColor: Colors.white.withOpacity(0.9),
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 15.0, vertical: 10.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        labelText:
-                            AppLocalizations.of(context).translate("Name:"),
-                      ),
-                      onSaved: (value) {
-                        contactProvider.changeName = value;
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: TextFormField(
-                      controller: streetController,
-                      maxLines: 2,
-                      keyboardType: TextInputType.multiline,
-                      style: Theme.of(context).textTheme.bodyText2,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        filled: true,
-                        fillColor: Colors.white.withOpacity(0.9),
-                        contentPadding: EdgeInsets.symmetric(
-                            horizontal: 15.0, vertical: 10.0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        labelText:
-                            AppLocalizations.of(context).translate("Street:"),
-                      ),
-                      onSaved: (value) {
-                        contactProvider.changeStreet = value;
-                      },
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width / 3.1,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: TextFormField(
-                            controller: numberController,
-                            keyboardType: TextInputType.numberWithOptions(),
-                            style: Theme.of(context).textTheme.bodyText2,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: Colors.white.withOpacity(0.9),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10.0),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              labelText: AppLocalizations.of(context)
-                                  .translate("Number:"),
-                            ),
-                            onSaved: (value) {
-                              contactProvider.changeNumber = value;
-                            },
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.6,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: TextFormField(
-                            controller: optionalController,
-                            keyboardType: TextInputType.text,
-                            style: Theme.of(context).textTheme.bodyText2,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: Colors.white.withOpacity(0.9),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10.0),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              labelText: AppLocalizations.of(context)
-                                  .translate("Optional:"),
-                            ),
-                            onSaved: (value) {
-                              contactProvider.changeOptional = value;
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width / 3.0,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: TextFormField(
-                            controller: zipCodeController,
-                            keyboardType: TextInputType.phone,
-                            style: Theme.of(context).textTheme.bodyText2,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: Colors.white.withOpacity(0.9),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10.0),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              labelText: AppLocalizations.of(context)
-                                  .translate("Zip code:"),
-                            ),
-                            onSaved: (value) {
-                              contactProvider.changeZipCode = value;
-                            },
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.8,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: TextFormField(
-                            controller: neighborhoodController,
-                            keyboardType: TextInputType.text,
-                            style: Theme.of(context).textTheme.bodyText2,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: Colors.white.withOpacity(0.9),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10.0),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              labelText: AppLocalizations.of(context)
-                                  .translate("Neighborhood:"),
-                            ),
-                            onSaved: (value) {
-                              contactProvider.changeNeighborhood = value;
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width / 3.8,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: TextFormField(
-                            controller: stateController,
-                            keyboardType: TextInputType.text,
-                            style: Theme.of(context).textTheme.bodyText2,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: Colors.white.withOpacity(0.9),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10.0),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              labelText: AppLocalizations.of(context)
-                                  .translate("State:"),
-                            ),
-                            onSaved: (value) {
-                              contactProvider.changeState = value;
-                            },
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.5,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: TextFormField(
-                            controller: cityController,
-                            keyboardType: TextInputType.text,
-                            style: Theme.of(context).textTheme.bodyText2,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: Colors.white.withOpacity(0.9),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10.0),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              labelText: AppLocalizations.of(context)
-                                  .translate("City:"),
-                            ),
-                            onSaved: (value) {
-                              contactProvider.changeCity = value;
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 8.0),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 1.9,
+        body: Container(
+          color: Colors.grey.withOpacity(0.3),
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Form(
+                key: _formKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
                       child: TextFormField(
-                        controller: phoneController,
-                        keyboardType: TextInputType.phone,
+                        validator: (value) {
+                          if (value.isEmpty || value.length < 4) {
+                            return AppLocalizations.of(context)
+                                .translate("Enter more than 4 characters");
+                          }
+                          return null;
+                        },
+                        controller: nameController,
+                        keyboardType: TextInputType.name,
                         style: Theme.of(context).textTheme.bodyText2,
                         decoration: InputDecoration(
                           isDense: true,
@@ -374,74 +162,19 @@ class _ContactEditScreenState extends State<ContactEditScreen> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           labelText:
-                              AppLocalizations.of(context).translate("Phone:"),
+                              AppLocalizations.of(context).translate("Name:"),
                         ),
                         onSaved: (value) {
-                          contactProvider.changePhone = value;
+                          contactProvider.changeName = value;
                         },
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 1.9,
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
                       child: TextFormField(
-                        controller: phone2Controller,
-                        keyboardType: TextInputType.phone,
-                        style: Theme.of(context).textTheme.bodyText2,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.9),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 10.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          labelText: AppLocalizations.of(context)
-                              .translate("Phone 2:"),
-                        ),
-                        onSaved: (value) {
-                          contactProvider.changePhone2 = value;
-                        },
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 1.9,
-                      child: TextFormField(
-                        controller: phone3Controller,
-                        keyboardType: TextInputType.phone,
-                        style: Theme.of(context).textTheme.bodyText2,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.9),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 10.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          labelText: AppLocalizations.of(context)
-                              .translate("Phone 3:"),
-                        ),
-                        onSaved: (value) {
-                          contactProvider.changePhone3 = value;
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8.0),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: TextFormField(
-                        controller: emailController,
-                        keyboardType: TextInputType.emailAddress,
+                        controller: streetController,
+                        maxLines: 2,
+                        keyboardType: TextInputType.multiline,
                         style: Theme.of(context).textTheme.bodyText2,
                         decoration: InputDecoration(
                           isDense: true,
@@ -453,171 +186,448 @@ class _ContactEditScreenState extends State<ContactEditScreen> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           labelText:
-                              AppLocalizations.of(context).translate("E-mail:"),
+                              AppLocalizations.of(context).translate("Street:"),
                         ),
                         onSaved: (value) {
-                          contactProvider.changeEmail = value;
+                          contactProvider.changeStreet = value;
                         },
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: TextFormField(
-                        controller: email2Controller,
-                        keyboardType: TextInputType.emailAddress,
-                        style: Theme.of(context).textTheme.bodyText2,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.9),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 10.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          labelText: AppLocalizations.of(context)
-                              .translate("E-mail 2:"),
-                        ),
-                        onSaved: (value) {
-                          contactProvider.changeEmail2 = value;
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width / 2.4,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: TextFormField(
-                            controller: cpfController,
-                            keyboardType: TextInputType.numberWithOptions(),
-                            style: Theme.of(context).textTheme.bodyText2,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: Colors.white.withOpacity(0.9),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10.0),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 3.1,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: numberController,
+                              keyboardType: TextInputType.numberWithOptions(),
+                              style: Theme.of(context).textTheme.bodyText2,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.9),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 15.0, vertical: 10.0),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: AppLocalizations.of(context)
+                                    .translate("Number:"),
                               ),
-                              labelText: AppLocalizations.of(context)
-                                  .translate("CPF:"),
+                              onSaved: (value) {
+                                contactProvider.changeNumber = value;
+                              },
                             ),
-                            onSaved: (value) {
-                              contactProvider.changeCpf = value;
-                            },
                           ),
                         ),
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 2,
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: TextFormField(
-                            controller: rgController,
-                            keyboardType: TextInputType.numberWithOptions(),
-                            style: Theme.of(context).textTheme.bodyText2,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              filled: true,
-                              fillColor: Colors.white.withOpacity(0.9),
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 10.0),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20.0),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.6,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: optionalController,
+                              keyboardType: TextInputType.text,
+                              style: Theme.of(context).textTheme.bodyText2,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.9),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 15.0, vertical: 10.0),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: AppLocalizations.of(context)
+                                    .translate("Optional:"),
                               ),
-                              labelText:
-                                  AppLocalizations.of(context).translate("RG:"),
+                              onSaved: (value) {
+                                contactProvider.changeOptional = value;
+                              },
                             ),
-                            onSaved: (value) {
-                              contactProvider.changeRg = value;
-                            },
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 2.1,
-                    height: 45.0,
-                    child: Padding(
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 3.0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: zipCodeController,
+                              keyboardType: TextInputType.phone,
+                              style: Theme.of(context).textTheme.bodyText2,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.9),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 15.0, vertical: 10.0),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: AppLocalizations.of(context)
+                                    .translate("Zip code:"),
+                              ),
+                              onSaved: (value) {
+                                contactProvider.changeZipCode = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.8,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: neighborhoodController,
+                              keyboardType: TextInputType.text,
+                              style: Theme.of(context).textTheme.bodyText2,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.9),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 15.0, vertical: 10.0),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: AppLocalizations.of(context)
+                                    .translate("Neighborhood:"),
+                              ),
+                              onSaved: (value) {
+                                contactProvider.changeNeighborhood = value;
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 3.8,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: stateController,
+                              keyboardType: TextInputType.text,
+                              style: Theme.of(context).textTheme.bodyText2,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.9),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 15.0, vertical: 10.0),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: AppLocalizations.of(context)
+                                    .translate("State:"),
+                              ),
+                              onSaved: (value) {
+                                contactProvider.changeState = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.5,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: cityController,
+                              keyboardType: TextInputType.text,
+                              style: Theme.of(context).textTheme.bodyText2,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.9),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 15.0, vertical: 10.0),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: AppLocalizations.of(context)
+                                    .translate("City:"),
+                              ),
+                              onSaved: (value) {
+                                contactProvider.changeCity = value;
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.0),
+                    Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: DateTimeField(
-                        initialValue: DateTime.now(),
-                        controller: dayOfBirthController,
-                        style: Theme.of(context).textTheme.bodyText2,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.9),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 10.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 1.9,
+                        child: TextFormField(
+                          controller: phoneController,
+                          keyboardType: TextInputType.phone,
+                          style: Theme.of(context).textTheme.bodyText2,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.9),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 15.0, vertical: 10.0),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            labelText: AppLocalizations.of(context)
+                                .translate("Phone:"),
                           ),
-                          labelText: AppLocalizations.of(context)
-                              .translate("Day of Birth:"),
+                          onSaved: (value) {
+                            contactProvider.changePhone = value;
+                          },
                         ),
-                        format: format,
-                        onShowPicker: (context, currentValue) {
-                          return showDatePicker(
-                            context: context,
-                            firstDate: DateTime(1900),
-                            initialDate: DateTime(1995),
-                            lastDate: DateTime.now(),
-                          );
-                        },
-                        onSaved: (value) {
-                          contactProvider.changeDayOfBirth = value;
-                        },
                       ),
                     ),
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width / 2.1,
-                    height: 45.0,
-                    child: Padding(
+                    Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: DateTimeField(
-                        controller: registerController,
-                        style: Theme.of(context).textTheme.bodyText2,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.9),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 10.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 1.9,
+                        child: TextFormField(
+                          controller: phone2Controller,
+                          keyboardType: TextInputType.phone,
+                          style: Theme.of(context).textTheme.bodyText2,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.9),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 15.0, vertical: 10.0),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            labelText: AppLocalizations.of(context)
+                                .translate("Phone 2:"),
                           ),
-                          labelText: AppLocalizations.of(context)
-                              .translate("Registered:"),
+                          onSaved: (value) {
+                            contactProvider.changePhone2 = value;
+                          },
                         ),
-                        initialValue: DateTime.now(),
-                        format: format,
-                        onShowPicker: (context, currentValue) {
-                          return showDatePicker(
-                            context: context,
-                            firstDate: DateTime(1900),
-                            initialDate: currentValue ?? DateTime.now(),
-                            lastDate: DateTime.now(),
-                          );
-                        },
-                        onSaved: (value) {
-                          contactProvider.changeRegister = value;
-                        },
                       ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width / 1.9,
+                        child: TextFormField(
+                          controller: phone3Controller,
+                          keyboardType: TextInputType.phone,
+                          style: Theme.of(context).textTheme.bodyText2,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.9),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 15.0, vertical: 10.0),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            labelText: AppLocalizations.of(context)
+                                .translate("Phone 3:"),
+                          ),
+                          onSaved: (value) {
+                            contactProvider.changePhone3 = value;
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8.0),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: TextFormField(
+                          controller: emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          style: Theme.of(context).textTheme.bodyText2,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.9),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 15.0, vertical: 10.0),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            labelText: AppLocalizations.of(context)
+                                .translate("E-mail:"),
+                          ),
+                          onSaved: (value) {
+                            contactProvider.changeEmail = value;
+                          },
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: TextFormField(
+                          controller: email2Controller,
+                          keyboardType: TextInputType.emailAddress,
+                          style: Theme.of(context).textTheme.bodyText2,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.9),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 15.0, vertical: 10.0),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            labelText: AppLocalizations.of(context)
+                                .translate("E-mail 2:"),
+                          ),
+                          onSaved: (value) {
+                            contactProvider.changeEmail2 = value;
+                          },
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 2.4,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: cpfController,
+                              keyboardType: TextInputType.phone,
+                              style: Theme.of(context).textTheme.bodyText2,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.9),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 15.0, vertical: 10.0),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: AppLocalizations.of(context)
+                                    .translate("CPF:"),
+                              ),
+                              onSaved: (value) {
+                                contactProvider.changeCpf = value;
+                              },
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: TextFormField(
+                              controller: rgController,
+                              keyboardType: TextInputType.phone,
+                              style: Theme.of(context).textTheme.bodyText2,
+                              decoration: InputDecoration(
+                                isDense: true,
+                                filled: true,
+                                fillColor: Colors.white.withOpacity(0.9),
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 15.0, vertical: 10.0),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                ),
+                                labelText: AppLocalizations.of(context)
+                                    .translate("RG:"),
+                              ),
+                              onSaved: (value) {
+                                contactProvider.changeRg = value;
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 2.1,
+                      height: 45.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: DateTimeField(
+                          initialValue: DateTime.now(),
+                          controller: dayOfBirthController,
+                          style: Theme.of(context).textTheme.bodyText2,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.9),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 15.0, vertical: 10.0),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            labelText: AppLocalizations.of(context)
+                                .translate("Day of Birth:"),
+                          ),
+                          format: format,
+                          onShowPicker: (context, currentValue) {
+                            return showDatePicker(
+                              context: context,
+                              firstDate: DateTime(1900),
+                              initialDate: DateTime(1995),
+                              lastDate: DateTime.now(),
+                            );
+                          },
+                          onSaved: (value) {
+                            contactProvider.changeDayOfBirth = value;
+                          },
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 2.1,
+                      height: 45.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: DateTimeField(
+                          controller: registerController,
+                          style: Theme.of(context).textTheme.bodyText2,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.9),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 15.0, vertical: 10.0),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            labelText: AppLocalizations.of(context)
+                                .translate("Registered:"),
+                          ),
+                          initialValue: DateTime.now(),
+                          format: format,
+                          onShowPicker: (context, currentValue) {
+                            return showDatePicker(
+                              context: context,
+                              firstDate: DateTime(1900),
+                              initialDate: currentValue ?? DateTime.now(),
+                              lastDate: DateTime.now(),
+                            );
+                          },
+                          onSaved: (value) {
+                            contactProvider.changeRegister = value;
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
