@@ -36,6 +36,7 @@ class _ContactListScreenState extends State<ContactListScreen> {
             ),
             itemBuilder: (context, index) {
               return Slidable(
+                // Slider for deleting a contact with dialog
                 dismissal: SlidableDismissal(
                   child: SlidableDrawerDismissal(),
                   closeOnCanceled: true,
