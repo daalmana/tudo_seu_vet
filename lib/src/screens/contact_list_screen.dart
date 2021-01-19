@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:tudo_seu_vet/src/screens/contact_detail_screen.dart';
 
 import '../../src/models/contacts.dart';
 import '../../src/providers/contact_provider.dart';
@@ -82,8 +83,19 @@ class _ContactListScreenState extends State<ContactListScreen> {
                 ),
                 actionPane: SlidableDrawerActionPane(),
                 actionExtentRatio: 0.25,
-                key: Key(snapshot.data.toString()),
+                key: Key(snapshot.data[index].contactId),
                 child: ListTile(
+                  onTap: () {
+                    // Goes to ContactDetailScreen with data of the contact that was tapped
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ContactDetailScreen(
+                          // Data of tapped contact
+                          contact: snapshot.data[index],
+                        ),
+                      ),
+                    );
+                  },
                   contentPadding:
                       EdgeInsets.symmetric(vertical: 0.0, horizontal: 15),
                   dense: true,

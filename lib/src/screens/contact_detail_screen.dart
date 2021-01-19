@@ -1,17 +1,253 @@
 import 'package:flutter/material.dart';
+import 'package:tudo_seu_vet/src/models/contacts.dart';
 
 // A screen that shows all of the contact/client details
-class ContactDetailScreen extends StatelessWidget {
+class ContactDetailScreen extends StatefulWidget {
   static const routeName = '/contact-detail';
+  final Contact contact;
+
+  ContactDetailScreen({this.contact});
+
+  @override
+  _ContactDetailScreenState createState() => _ContactDetailScreenState();
+}
+
+class _ContactDetailScreenState extends State<ContactDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Contact detail',
-          style: Theme.of(context).textTheme.headline6.copyWith(
-                color: Colors.white,
-              ),
+    return Container(
+      // BackgroundImage
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/Vet-Clinic-3small.jpg'),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: Text(
+            widget.contact.name,
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18.0),
+                      color: Colors.white.withOpacity(0.9),
+                    ),
+                    width: MediaQuery.of(context).size.width / 0.9,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Address:',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  .copyWith(
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
+                          ),
+                          Text(
+                            widget.contact.street,
+                            style: Theme.of(context).textTheme.bodyText1,
+                            textAlign: TextAlign.center,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                widget.contact.number,
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                              Text(',  '),
+                              Text(
+                                widget.contact.optional,
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                            ],
+                          ),
+                          Text(
+                            widget.contact.cep,
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                widget.contact.neighborhood,
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                              Text(',  '),
+                              Text(
+                                widget.contact.state,
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                            ],
+                          ),
+                          Text(
+                            widget.contact.city,
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18.0),
+                      color: Colors.white.withOpacity(0.9),
+                    ),
+                    width: MediaQuery.of(context).size.width / 0.9,
+                    child: Column(
+                      children: [
+                        TextButton.icon(
+                          icon: Icon(Icons.phone, size: 15.0),
+                          label: Text(
+                            'Phone: ' + widget.contact.phone,
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                          onPressed: () {},
+                        ),
+                        widget.contact.phone2.isEmpty
+                            ? Container()
+                            : TextButton.icon(
+                                icon: Icon(Icons.phone, size: 15.0),
+                                label: Text(
+                                  'Phone 2: ' + widget.contact.phone2,
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
+                                onPressed: () {},
+                              ),
+                        widget.contact.phone3.isEmpty
+                            ? Container()
+                            : TextButton.icon(
+                                icon: Icon(Icons.phone, size: 15.0),
+                                label: Text(
+                                  'Phone 3: ' + widget.contact.phone3,
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
+                                onPressed: () {},
+                              ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18.0),
+                      color: Colors.white.withOpacity(0.9),
+                    ),
+                    width: MediaQuery.of(context).size.width / 0.9,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        TextButton.icon(
+                          icon: Icon(Icons.email, size: 15.0),
+                          label: Text(
+                            'E-mail: ' + widget.contact.email,
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                          onPressed: () {},
+                        ),
+                        widget.contact.email2.isEmpty
+                            ? Container()
+                            : TextButton.icon(
+                                icon: Icon(Icons.email, size: 15.0),
+                                label: Text(
+                                  'E-mail 2: ' + widget.contact.email2,
+                                  style: Theme.of(context).textTheme.bodyText2,
+                                ),
+                                onPressed: () {},
+                              ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18.0),
+                      color: Colors.white.withOpacity(0.9),
+                    ),
+                    width: MediaQuery.of(context).size.width / 0.9,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'Contact info:',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  .copyWith(
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                            ),
+                          ),
+                          Text(
+                            'CPF: ' + widget.contact.cpf,
+                            style: Theme.of(context).textTheme.bodyText1,
+                            textAlign: TextAlign.center,
+                          ),
+                          widget.contact.rg.isEmpty
+                              ? Container()
+                              : Text(
+                                  'RG: ' + widget.contact.rg,
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
+                          Text(
+                            'Day of Birth: ' +
+                                widget.contact.dayOfBirth.substring(
+                                  0,
+                                  10,
+                                ),
+                            style: Theme.of(context).textTheme.bodyText1,
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            'Registered: ' +
+                                widget.contact.register.substring(
+                                  0,
+                                  10,
+                                ),
+                            style: Theme.of(context).textTheme.bodyText1,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
