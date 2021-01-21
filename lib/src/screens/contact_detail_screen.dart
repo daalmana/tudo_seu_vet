@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tudo_seu_vet/src/utils/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../src/models/contacts.dart';
 
@@ -46,6 +47,21 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
           title: Text(
             widget.contact.name,
           ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.edit),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ContactDetailScreen(
+                      // Data of tapped contact
+                      contact: widget.contact,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -66,7 +82,8 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Address:',
+                              AppLocalizations.of(context)
+                                  .translate("Address:"),
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6
@@ -76,23 +93,15 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                             ),
                           ),
                           Text(
-                            widget.contact.street,
+                            widget.contact.street +
+                                ', ' +
+                                widget.contact.number,
                             style: Theme.of(context).textTheme.bodyText1,
                             textAlign: TextAlign.center,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                widget.contact.number,
-                                style: Theme.of(context).textTheme.bodyText1,
-                              ),
-                              Text(',  '),
-                              Text(
-                                widget.contact.optional,
-                                style: Theme.of(context).textTheme.bodyText1,
-                              ),
-                            ],
+                          Text(
+                            widget.contact.optional,
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
                           Text(
                             widget.contact.cep,
@@ -136,7 +145,8 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Phone numbers:',
+                            AppLocalizations.of(context)
+                                .translate("Phone numbers:"),
                             style:
                                 Theme.of(context).textTheme.headline6.copyWith(
                                       fontStyle: FontStyle.italic,
@@ -148,13 +158,16 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                               launch("tel://${widget.contact.phone}"),
                           icon: Icon(Icons.phone, size: 15.0),
                           label: Text(
-                            'Phone: ' + widget.contact.phone,
+                            AppLocalizations.of(context).translate("Phone:") +
+                                widget.contact.phone,
                             style: Theme.of(context).textTheme.bodyText2,
                           ),
                           onLongPress: () {
                             launchWhatsApp(
                               number: widget.contact.phone,
-                              message: "Hello ${widget.contact.name}, ",
+                              message: AppLocalizations.of(context)
+                                      .translate("Hello") +
+                                  widget.contact.name,
                             );
                           },
                         ),
@@ -163,7 +176,9 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                             : TextButton.icon(
                                 icon: Icon(Icons.phone, size: 15.0),
                                 label: Text(
-                                  'Phone 2: ' + widget.contact.phone2,
+                                  AppLocalizations.of(context)
+                                          .translate("Phone 2:") +
+                                      widget.contact.phone2,
                                   style: Theme.of(context).textTheme.bodyText2,
                                 ),
                                 onPressed: () => launch(
@@ -172,7 +187,9 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                 onLongPress: () {
                                   launchWhatsApp(
                                     number: widget.contact.phone2,
-                                    message: "Hello ${widget.contact.name}, ",
+                                    message: AppLocalizations.of(context)
+                                            .translate("Hello") +
+                                        widget.contact.name,
                                   );
                                 },
                               ),
@@ -181,7 +198,9 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                             : TextButton.icon(
                                 icon: Icon(Icons.phone, size: 15.0),
                                 label: Text(
-                                  'Phone 3: ' + widget.contact.phone3,
+                                  AppLocalizations.of(context)
+                                          .translate("Phone 3:") +
+                                      widget.contact.phone3,
                                   style: Theme.of(context).textTheme.bodyText2,
                                 ),
                                 onPressed: () => launch(
@@ -190,7 +209,9 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                 onLongPress: () {
                                   launchWhatsApp(
                                     number: widget.contact.phone3,
-                                    message: "Hello ${widget.contact.name}, ",
+                                    message: AppLocalizations.of(context)
+                                            .translate("Hello") +
+                                        widget.contact.name,
                                   );
                                 },
                               ),
@@ -229,7 +250,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                           ),
                           onPressed: () {
                             customLaunch(
-                              'mailto:${widget.contact.email}?subject=Bom%20dia&body=Ola%20${widget.contact.name}, \n',
+                              'mailto:${widget.contact.email}?subject=Bom%20dia&body=Olá%20${widget.contact.name},\n',
                             );
                           },
                         ),
@@ -243,7 +264,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                 ),
                                 onPressed: () {
                                   customLaunch(
-                                    'mailto:${widget.contact.email2}?subject=Bom%20dia&body=Ola%20${widget.contact.name}, \n',
+                                    'mailto:${widget.contact.email2}?subject=Bom%20dia&body=Olá%20${widget.contact.name},\n',
                                   );
                                 },
                               ),
@@ -268,7 +289,8 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              'Contact info:',
+                              AppLocalizations.of(context)
+                                  .translate("Contact info:"),
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6
@@ -289,7 +311,8 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                   style: Theme.of(context).textTheme.bodyText2,
                                 ),
                           Text(
-                            'Day of Birth: ' +
+                            AppLocalizations.of(context)
+                                    .translate("Day of Birth:") +
                                 widget.contact.dayOfBirth.substring(
                                   0,
                                   10,
@@ -298,7 +321,8 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                             textAlign: TextAlign.center,
                           ),
                           Text(
-                            'Registered: ' +
+                            AppLocalizations.of(context)
+                                    .translate("Registered:") +
                                 widget.contact.register.substring(
                                   0,
                                   10,
