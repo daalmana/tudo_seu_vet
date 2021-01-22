@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:tudo_seu_vet/src/providers/contact_provider.dart';
-import 'package:tudo_seu_vet/src/screens/contact_detail_screen.dart';
-import 'package:tudo_seu_vet/src/screens/contact_edit_screen.dart';
-import 'package:tudo_seu_vet/src/screens/contact_list_screen.dart';
-import 'package:tudo_seu_vet/src/screens/landing_screen.dart';
-import 'package:tudo_seu_vet/src/utils/app_localizations.dart';
+import 'package:tudo_seu_vet/src/screens/patient_detail_screen.dart';
+import 'package:tudo_seu_vet/src/screens/patient_edit2_screen.dart';
+import 'package:tudo_seu_vet/src/screens/patient_list_screen.dart';
+
+import './src/providers/contact_provider.dart';
+import './src/providers/patient_provider.dart';
+import './src/screens/contact_detail_screen.dart';
+import './src/screens/contact_edit_screen.dart';
+import './src/screens/contact_list_screen.dart';
+import './src/screens/landing_screen.dart';
+import './src/screens/patient_edit_screen.dart';
+import './src/utils/app_localizations.dart';
 
 //MaterialApp widget for themes, fonts, colors...
 class App extends StatelessWidget {
@@ -18,13 +24,18 @@ class App extends StatelessWidget {
         AssetImage("assets/images/tudo_seu_avatar_logo.jpg"), context);
     precacheImage(AssetImage("assets/images/Vet-Clinic-3small.jpg"), context);
     precacheImage(AssetImage("assets/images/web_CANIS_18.jpg"), context);
+    precacheImage(AssetImage("assets/images/cats&dogs.jpg"), context);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
           create: (context) => ContactProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => PatientProvider(),
+        ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Tudo Seu Vet',
         theme: ThemeData(
           primaryColor: Colors.teal[800],
@@ -134,6 +145,10 @@ class App extends StatelessWidget {
           ContactListScreen.routeName: (context) => ContactListScreen(),
           ContactEditScreen.routeName: (context) => ContactEditScreen(),
           ContactDetailScreen.routeName: (context) => ContactDetailScreen(),
+          PatientEditScreen.routeName: (context) => PatientEditScreen(),
+          PatientListScreen.routeName: (context) => PatientListScreen(),
+          PatientDetailScreen.routName: (context) => PatientDetailScreen(),
+          PatientEdit2Screen.routeName: (context) => PatientEdit2Screen(),
         },
       ),
     );

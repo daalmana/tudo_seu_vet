@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tudo_seu_vet/src/utils/app_localizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../src/models/contacts.dart';
+import '../../src/screens/contact_edit_screen.dart';
+import '../../src/screens/patient_edit_screen.dart';
+import '../../src/utils/app_localizations.dart';
 
 // A screen that shows all of the contact/client details
 class ContactDetailScreen extends StatefulWidget {
   static const routeName = '/contact-detail';
   final Contact contact;
-
   ContactDetailScreen({this.contact});
 
   @override
@@ -53,7 +56,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => ContactDetailScreen(
+                    builder: (context) => ContactEditScreen(
                       // Data of tapped contact
                       contact: widget.contact,
                     ),
@@ -153,67 +156,112 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                     ),
                           ),
                         ),
-                        TextButton.icon(
-                          onPressed: () =>
-                              launch("tel://${widget.contact.phone}"),
-                          icon: Icon(Icons.phone, size: 15.0),
-                          label: Text(
-                            AppLocalizations.of(context).translate("Phone:") +
-                                widget.contact.phone,
-                            style: Theme.of(context).textTheme.bodyText2,
-                          ),
-                          onLongPress: () {
-                            launchWhatsApp(
-                              number: widget.contact.phone,
-                              message: AppLocalizations.of(context)
-                                      .translate("Hello") +
-                                  widget.contact.name,
-                            );
-                          },
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            TextButton.icon(
+                              onPressed: () =>
+                                  launch("tel://${widget.contact.phone}"),
+                              icon: Icon(Icons.phone, size: 15.0),
+                              label: Text(
+                                AppLocalizations.of(context)
+                                        .translate("Phone:") +
+                                    widget.contact.phone,
+                                style: Theme.of(context).textTheme.bodyText2,
+                              ),
+                            ),
+                            IconButton(
+                              icon: FaIcon(
+                                FontAwesomeIcons.whatsapp,
+                                size: 25.0,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                launchWhatsApp(
+                                  number: widget.contact.phone,
+                                  message: AppLocalizations.of(context)
+                                          .translate("Hello") +
+                                      ' ' +
+                                      widget.contact.name +
+                                      ', ',
+                                );
+                              },
+                            ),
+                          ],
                         ),
                         widget.contact.phone2.isEmpty
                             ? Container()
-                            : TextButton.icon(
-                                icon: Icon(Icons.phone, size: 15.0),
-                                label: Text(
-                                  AppLocalizations.of(context)
-                                          .translate("Phone 2:") +
-                                      widget.contact.phone2,
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
-                                onPressed: () => launch(
-                                  "tel://${widget.contact.phone2}",
-                                ),
-                                onLongPress: () {
-                                  launchWhatsApp(
-                                    number: widget.contact.phone2,
-                                    message: AppLocalizations.of(context)
-                                            .translate("Hello") +
-                                        widget.contact.name,
-                                  );
-                                },
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextButton.icon(
+                                    onPressed: () => launch(
+                                        "tel://${widget.contact.phone2}"),
+                                    icon: Icon(Icons.phone, size: 15.0),
+                                    label: Text(
+                                      AppLocalizations.of(context)
+                                              .translate("Phone 2:") +
+                                          widget.contact.phone,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.whatsapp,
+                                      size: 25.0,
+                                      color: Colors.green,
+                                    ),
+                                    onPressed: () {
+                                      launchWhatsApp(
+                                        number: widget.contact.phone,
+                                        message: AppLocalizations.of(context)
+                                                .translate("Hello") +
+                                            ' ' +
+                                            widget.contact.name +
+                                            ', ',
+                                      );
+                                    },
+                                  ),
+                                ],
                               ),
                         widget.contact.phone3.isEmpty
                             ? Container()
-                            : TextButton.icon(
-                                icon: Icon(Icons.phone, size: 15.0),
-                                label: Text(
-                                  AppLocalizations.of(context)
-                                          .translate("Phone 3:") +
-                                      widget.contact.phone3,
-                                  style: Theme.of(context).textTheme.bodyText2,
-                                ),
-                                onPressed: () => launch(
-                                  "tel://${widget.contact.phone3}",
-                                ),
-                                onLongPress: () {
-                                  launchWhatsApp(
-                                    number: widget.contact.phone3,
-                                    message: AppLocalizations.of(context)
-                                            .translate("Hello") +
-                                        widget.contact.name,
-                                  );
-                                },
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  TextButton.icon(
+                                    onPressed: () => launch(
+                                        "tel://${widget.contact.phone3}"),
+                                    icon: Icon(Icons.phone, size: 15.0),
+                                    label: Text(
+                                      AppLocalizations.of(context)
+                                              .translate("Phone 3:") +
+                                          widget.contact.phone,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText2,
+                                    ),
+                                  ),
+                                  IconButton(
+                                    icon: FaIcon(
+                                      FontAwesomeIcons.whatsapp,
+                                      size: 25.0,
+                                      color: Colors.green,
+                                    ),
+                                    onPressed: () {
+                                      launchWhatsApp(
+                                        number: widget.contact.phone,
+                                        message: AppLocalizations.of(context)
+                                                .translate("Hello") +
+                                            ' ' +
+                                            widget.contact.name +
+                                            ', ',
+                                      );
+                                    },
+                                  ),
+                                ],
                               ),
                       ],
                     ),
@@ -223,6 +271,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                   height: 20.0,
                 ),
                 Center(
+                  // TODO Make subject and body dynamic for translations
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(18.0),
@@ -338,6 +387,23 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
               ],
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PatientEditScreen(
+                  // Data of tapped contact
+                  contact: widget.contact,
+                ),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.pets,
+            color: Colors.white,
+          ),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
       ),
     );

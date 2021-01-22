@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:tudo_seu_vet/src/screens/patient_list_screen.dart';
 import 'package:tudo_seu_vet/src/utils/app_localizations.dart';
 
 import '../widgets/homepage_menu_card.dart';
@@ -77,7 +78,7 @@ class _HomePageState extends State<HomePage> {
               HomePageMenuCard(
                 icons: Icons.pets,
                 text: AppLocalizations.of(context).translate("Patients"),
-                onTab: '',
+                onTab: PatientListScreen.routeName,
               ),
               HomePageMenuCard(
                 icons: Icons.corporate_fare,
