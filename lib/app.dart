@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:tudo_seu_vet/src/screens/patient_detail_screen.dart';
-import 'package:tudo_seu_vet/src/screens/patient_edit2_screen.dart';
+import 'package:tudo_seu_vet/src/screens/patient_edit_screen.dart';
 import 'package:tudo_seu_vet/src/screens/patient_list_screen.dart';
 
 import './src/providers/contact_provider.dart';
@@ -11,7 +11,7 @@ import './src/screens/contact_detail_screen.dart';
 import './src/screens/contact_edit_screen.dart';
 import './src/screens/contact_list_screen.dart';
 import './src/screens/landing_screen.dart';
-import './src/screens/patient_edit_screen.dart';
+import './src/screens/patient_edit_add_screen.dart';
 import './src/utils/app_localizations.dart';
 
 //MaterialApp widget for themes, fonts, colors...
@@ -145,10 +145,10 @@ class App extends StatelessWidget {
           ContactListScreen.routeName: (context) => ContactListScreen(),
           ContactEditScreen.routeName: (context) => ContactEditScreen(),
           ContactDetailScreen.routeName: (context) => ContactDetailScreen(),
-          PatientEditScreen.routeName: (context) => PatientEditScreen(),
+          PatientEditAddScreen.routeName: (context) => PatientEditAddScreen(),
           PatientListScreen.routeName: (context) => PatientListScreen(),
           PatientDetailScreen.routName: (context) => PatientDetailScreen(),
-          PatientEdit2Screen.routeName: (context) => PatientEdit2Screen(),
+          PatientEditScreen.routeName: (context) => PatientEditScreen(),
         },
       ),
     );

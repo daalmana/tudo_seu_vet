@@ -2,24 +2,23 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tudo_seu_vet/src/screens/patient_list_screen.dart';
 
 import '../../src/models/contacts.dart';
 import '../../src/models/patients.dart';
 import '../../src/providers/patient_provider.dart';
 import '../../src/utils/app_localizations.dart';
 
-class PatientEdit2Screen extends StatefulWidget {
-  static const routeName = '/patient2';
+class PatientEditAddScreen extends StatefulWidget {
+  static const routeName = '/patient-add-edit';
   final Patient patient;
   final Contact contact;
 
-  PatientEdit2Screen({this.contact, this.patient});
+  PatientEditAddScreen({this.contact, this.patient});
   @override
-  _PatientEdit2ScreenState createState() => _PatientEdit2ScreenState();
+  _PatientEditAddScreenState createState() => _PatientEditAddScreenState();
 }
 
-class _PatientEdit2ScreenState extends State<PatientEdit2Screen> {
+class _PatientEditAddScreenState extends State<PatientEditAddScreen> {
   final _formKey = GlobalKey<FormState>();
   final format = DateFormat("dd-MM-yyyy");
 
@@ -84,7 +83,7 @@ class _PatientEdit2ScreenState extends State<PatientEdit2Screen> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text(
-            widget.patient.name,
+            AppLocalizations.of(context).translate("Add patient"),
           ),
           actions: [
             IconButton(
@@ -94,8 +93,7 @@ class _PatientEdit2ScreenState extends State<PatientEdit2Screen> {
                 if (isValid) {
                   _formKey.currentState.save();
                   patientProvider.savePatient();
-                  Navigator.of(context)
-                      .popAndPushNamed(PatientListScreen.routeName);
+                  Navigator.of(context).pop();
                 }
               },
             )
@@ -117,7 +115,7 @@ class _PatientEdit2ScreenState extends State<PatientEdit2Screen> {
                       maintainState: true,
                       child: TextFormField(
                         enabled: false,
-                        initialValue: widget.patient.ownerId,
+                        initialValue: widget.contact.contactId,
                         decoration: InputDecoration(
                             isDense: true,
                             filled: true,
@@ -142,7 +140,7 @@ class _PatientEdit2ScreenState extends State<PatientEdit2Screen> {
                       child: TextFormField(
                         style: Theme.of(context).textTheme.bodyText1,
                         enabled: false,
-                        initialValue: widget.patient.owner,
+                        initialValue: widget.contact.name,
                         decoration: InputDecoration(
                             isDense: true,
                             filled: true,

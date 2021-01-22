@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../src/models/contacts.dart';
 import '../../src/screens/contact_edit_screen.dart';
-import '../../src/screens/patient_edit_screen.dart';
+import '../../src/screens/patient_edit_add_screen.dart';
 import '../../src/utils/app_localizations.dart';
 
 // A screen that shows all of the contact/client details
@@ -392,7 +392,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => PatientEditScreen(
+                builder: (context) => PatientEditAddScreen(
                   // Data of tapped contact
                   contact: widget.contact,
                 ),

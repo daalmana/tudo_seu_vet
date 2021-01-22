@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tudo_seu_vet/src/models/patients.dart';
-import 'package:tudo_seu_vet/src/screens/patient_edit2_screen.dart';
+import 'package:tudo_seu_vet/src/screens/patient_edit_screen.dart';
 
 class PatientDetailScreen extends StatefulWidget {
   static const routName = '/patients-detail';
@@ -32,7 +32,7 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => PatientEdit2Screen(
+                    builder: (context) => PatientEditScreen(
                       // Data of tapped contact
                       patient: widget.patient,
                     ),

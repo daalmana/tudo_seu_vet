@@ -2,6 +2,7 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:tudo_seu_vet/src/screens/patient_list_screen.dart';
 
 import '../../src/models/contacts.dart';
 import '../../src/models/patients.dart';
@@ -9,7 +10,7 @@ import '../../src/providers/patient_provider.dart';
 import '../../src/utils/app_localizations.dart';
 
 class PatientEditScreen extends StatefulWidget {
-  static const routeName = '/patient';
+  static const routeName = '/patient-edit';
   final Patient patient;
   final Contact contact;
 
@@ -83,7 +84,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text(
-            AppLocalizations.of(context).translate("Add patient"),
+            widget.patient.name,
           ),
           actions: [
             IconButton(
@@ -93,7 +94,8 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                 if (isValid) {
                   _formKey.currentState.save();
                   patientProvider.savePatient();
-                  Navigator.of(context).pop();
+                  Navigator.of(context)
+                      .popAndPushNamed(PatientListScreen.routeName);
                 }
               },
             )
@@ -115,7 +117,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                       maintainState: true,
                       child: TextFormField(
                         enabled: false,
-                        initialValue: widget.contact.contactId,
+                        initialValue: widget.patient.ownerId,
                         decoration: InputDecoration(
                             isDense: true,
                             filled: true,
@@ -140,7 +142,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                       child: TextFormField(
                         style: Theme.of(context).textTheme.bodyText1,
                         enabled: false,
-                        initialValue: widget.contact.name,
+                        initialValue: widget.patient.owner,
                         decoration: InputDecoration(
                             isDense: true,
                             filled: true,
