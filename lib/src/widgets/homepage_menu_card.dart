@@ -19,7 +19,7 @@ class HomePageMenuCard extends StatelessWidget {
         Navigator.of(context).pushNamed(onTab);
       },
       child: Card(
-        elevation: 12.0,
+        elevation: 8.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             25.0,

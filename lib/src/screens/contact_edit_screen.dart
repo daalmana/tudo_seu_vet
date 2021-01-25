@@ -53,7 +53,11 @@ class _ContactEditScreenState extends State<ContactEditScreen> {
       phone3Controller.text = widget.contact.phone3;
       emailController.text = widget.contact.email;
       email2Controller.text = widget.contact.email2;
-      dayOfBirthController.text = widget.contact.dayOfBirth;
+      dayOfBirthController.text = format.format(
+        DateTime.parse(
+          widget.contact.dayOfBirth,
+        ),
+      );
       streetController.text = widget.contact.street;
       numberController.text = widget.contact.number;
       neighborhoodController.text = widget.contact.neighborhood;
@@ -63,7 +67,11 @@ class _ContactEditScreenState extends State<ContactEditScreen> {
       zipCodeController.text = widget.contact.cep;
       rgController.text = widget.contact.rg;
       cpfController.text = widget.contact.cpf;
-      registerController.text = widget.contact.register;
+      registerController.text = format.format(
+        DateTime.parse(
+          widget.contact.register,
+        ),
+      );
       contactProvider.loadAll(widget.contact);
     } else {
       contactProvider.loadAll(null);

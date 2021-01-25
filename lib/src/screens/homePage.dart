@@ -55,6 +55,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         child: Container(
+          padding: EdgeInsets.all(16.0),
           color: Colors.grey.withOpacity(0.3),
           child: GridView.count(
             reverse: true,

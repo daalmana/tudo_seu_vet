@@ -2,7 +2,6 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tudo_seu_vet/src/screens/patient_list_screen.dart';
 
 import '../../src/models/contacts.dart';
 import '../../src/models/patients.dart';
@@ -39,7 +38,11 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
         Provider.of<PatientProvider>(context, listen: false);
     if (widget.patient != null) {
       nameController.text = widget.patient.name;
-      dayOfBirthController.text = widget.patient.dayOfBirth;
+      dayOfBirthController.text = format.format(
+        DateTime.parse(
+          widget.patient.dayOfBirth,
+        ),
+      );
       breedController.text = widget.patient.breed;
       sexController.text = widget.patient.sex;
       colorController.text = widget.patient.color;
@@ -94,8 +97,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                 if (isValid) {
                   _formKey.currentState.save();
                   patientProvider.savePatient();
-                  Navigator.of(context)
-                      .popAndPushNamed(PatientListScreen.routeName);
+                  Navigator.of(context).pop();
                 }
               },
             )
@@ -113,7 +115,7 @@ class _PatientEditScreenState extends State<PatientEditScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Visibility(
-                      visible: true,
+                      visible: false,
                       maintainState: true,
                       child: TextFormField(
                         enabled: false,

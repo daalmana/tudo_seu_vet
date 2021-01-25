@@ -38,7 +38,11 @@ class _PatientEditAddScreenState extends State<PatientEditAddScreen> {
         Provider.of<PatientProvider>(context, listen: false);
     if (widget.patient != null) {
       nameController.text = widget.patient.name;
-      dayOfBirthController.text = widget.patient.dayOfBirth;
+      dayOfBirthController.text = format.format(
+        DateTime.parse(
+          widget.patient.dayOfBirth,
+        ),
+      );
       breedController.text = widget.patient.breed;
       sexController.text = widget.patient.sex;
       colorController.text = widget.patient.color;
@@ -111,7 +115,7 @@ class _PatientEditAddScreenState extends State<PatientEditAddScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Visibility(
-                      visible: true,
+                      visible: false,
                       maintainState: true,
                       child: TextFormField(
                         enabled: false,
