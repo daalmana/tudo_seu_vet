@@ -20,6 +20,7 @@
   "Create a new account": "Criar nova conta",
   "Day of Birth:": "Nascimento:",
   "Delete": "Deletar",
+  "Description:": "Descrição:",
   "Edit contact": "Editar Contato",
   "Enter a name": "Insira o nome",
   "Enter more than 4 characters": "Insira mais de 4 caracteres",
@@ -54,5 +55,6 @@
   "The password needs to be at least 7 characters long": "A senha deve ter pelo menos 7 caracteres",
   "Username": "Usuário",
   "Weight:": "Peso:",
+  "With:": "Com:",
   "Zip code:": "CEP:"
 }

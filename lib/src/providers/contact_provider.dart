@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 
-import '.././services/firestore_contact_service.dart';
+import '.././services/firestore_service_contact.dart';
 import '.././models/contacts.dart';
 
 class ContactProvider with ChangeNotifier {

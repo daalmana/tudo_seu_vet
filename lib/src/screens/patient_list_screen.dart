@@ -145,7 +145,7 @@ class _PatientListScreenState extends State<PatientListScreen> {
                               FlatButton(
                                 child: Text('Ok'),
                                 onPressed: () {
-                                  contactProvider.removeContact(
+                                  patientProvider.removePatient(
                                       snapshot.data[index].patientId);
                                   Navigator.of(context).pop(true);
                                 },

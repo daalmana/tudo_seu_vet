@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tudo_seu_vet/src/screens/contact_detail_screen.dart';
@@ -165,8 +166,8 @@ class _ContactListScreenState extends State<ContactListScreen> {
         onPressed: () {
           Navigator.of(context).pushNamed(ContactEditScreen.routeName);
         },
-        child: Icon(
-          Icons.add,
+        child: FaIcon(
+          FontAwesomeIcons.plus,
           color: Colors.white,
         ),
         backgroundColor: Theme.of(context).primaryColor,

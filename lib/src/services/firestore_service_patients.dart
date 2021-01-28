@@ -18,6 +18,17 @@ class FirestoreServicePatients {
             snapshot.docs.map((doc) => Patient.fromJson(doc.data())).toList());
   }
 
+  Stream<List<Patient>> getClientPatients(String contactList) {
+    return _db
+        .collection('users')
+        .doc(user.uid)
+        .collection('patients')
+        .where('ownerId', isEqualTo: contactList)
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => Patient.fromJson(doc.data())).toList());
+  }
+
   //Upsert
   Future<void> setPatient(Patient patient) {
     var options = SetOptions(merge: true);

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:tudo_seu_vet/src/screens/patient_detail_screen.dart';
-import 'package:tudo_seu_vet/src/screens/patient_edit_screen.dart';
-import 'package:tudo_seu_vet/src/screens/patient_list_screen.dart';
+import 'package:tudo_seu_vet/src/screens/agenda_home_screen.dart';
+import 'package:tudo_seu_vet/src/screens/consult_list_screen.dart';
+import 'package:tudo_seu_vet/src/screens/invoice_list_screen.dart';
+import './src/providers/consult_provider.dart';
+import './src/screens/consult_add_screen.dart';
+import './src/screens/patient_detail_screen.dart';
+import './src/screens/patient_edit_screen.dart';
+import './src/screens/patient_list_screen.dart';
 
 import './src/providers/contact_provider.dart';
 import './src/providers/patient_provider.dart';
@@ -33,6 +38,9 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => PatientProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ConsultProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -149,6 +157,10 @@ class App extends StatelessWidget {
           PatientListScreen.routeName: (context) => PatientListScreen(),
           PatientDetailScreen.routName: (context) => PatientDetailScreen(),
           PatientEditScreen.routeName: (context) => PatientEditScreen(),
+          AddConsultScreen.routeName: (context) => AddConsultScreen(),
+          ConsultListScreen.routeName: (context) => ConsultListScreen(),
+          InvoiceListScreen.routeName: (context) => InvoiceListScreen(),
+          AgendaHomeScreen.routeName: (context) => AgendaHomeScreen(),
         },
       ),
     );

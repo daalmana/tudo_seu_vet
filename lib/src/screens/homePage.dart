@@ -1,10 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:tudo_seu_vet/src/screens/patient_list_screen.dart';
-import 'package:tudo_seu_vet/src/utils/app_localizations.dart';
+import 'package:tudo_seu_vet/src/screens/agenda_home_screen.dart';
+import '../../src/screens/invoice_list_screen.dart';
 
 import '../widgets/homepage_menu_card.dart';
+import '../screens/consult_add_screen.dart';
+import '../screens/consult_list_screen.dart';
+import '../screens/patient_list_screen.dart';
 import '../screens/contact_list_screen.dart';
+import '../utils/app_localizations.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -64,12 +68,12 @@ class _HomePageState extends State<HomePage> {
               HomePageMenuCard(
                 icons: Icons.date_range,
                 text: 'Agenda',
-                onTab: '',
+                onTab: AgendaHomeScreen.routeName,
               ),
               HomePageMenuCard(
                 icons: Icons.add_business_rounded,
                 text: AppLocalizations.of(context).translate("+ Consult"),
-                onTab: '',
+                onTab: AddConsultScreen.routeName,
               ),
               HomePageMenuCard(
                 text: AppLocalizations.of(context).translate("Clients"),
@@ -84,12 +88,12 @@ class _HomePageState extends State<HomePage> {
               HomePageMenuCard(
                 icons: Icons.corporate_fare,
                 text: AppLocalizations.of(context).translate("Consults"),
-                onTab: '',
+                onTab: ConsultListScreen.routeName,
               ),
               HomePageMenuCard(
                 icons: Icons.attach_money,
                 text: AppLocalizations.of(context).translate("Payments"),
-                onTab: '',
+                onTab: InvoiceListScreen.routeName,
               ),
             ],
           ),

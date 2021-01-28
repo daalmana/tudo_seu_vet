@@ -22,12 +22,11 @@ class HomePageMenuCard extends StatelessWidget {
         elevation: 8.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
-            25.0,
+            16.0,
           ),
         ),
         color: Colors.white.withOpacity(0.9),
-        margin:
-            EdgeInsets.only(left: 12.0, right: 12.0, bottom: 8.0, top: 20.0),
+        margin: EdgeInsets.only(left: 4.0, right: 4.0, bottom: 8.0, top: 8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

@@ -3,12 +3,12 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tudo_seu_vet/src/providers/patient_provider.dart';
-import 'package:tudo_seu_vet/src/screens/patient_detail_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../src/models/contacts.dart';
+import '../../src/providers/patient_provider.dart';
 import '../../src/screens/contact_edit_screen.dart';
+import '../../src/screens/patient_detail_screen.dart';
 import '../../src/screens/patient_edit_add_screen.dart';
 import '../../src/utils/app_localizations.dart';
 
@@ -306,7 +306,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                           ),
                           onPressed: () {
                             customLaunch(
-                              'mailto:${widget.contact.email}?subject=Bom%20dia&body=Olá%20${widget.contact.name},\n',
+                              'mailto:${widget.contact.email}?subject=${AppLocalizations.of(context).translate("Contact info:")}Bom%20dia&body=Olá%20${widget.contact.name},\n',
                             );
                           },
                         ),
@@ -400,15 +400,14 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                       borderRadius: BorderRadius.circular(18.0),
                       color: Colors.white.withOpacity(0.9),
                     ),
-                    // TODO Sort out the height problem
                     width: MediaQuery.of(context).size.width / 0.9,
-                    height: 200,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: StreamBuilder(
                           stream: patientProvider.patients,
                           builder: (context, snapshot) {
                             return ListView.builder(
+                              shrinkWrap: true,
                               itemCount:
                                   snapshot.hasData ? snapshot.data.length : 0,
                               itemBuilder: (context, index) {
@@ -493,12 +492,21 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                             .bodyText1,
                                       ),
                                       subtitle: Text(
-                                        snapshot.data[index].owner,
+                                        AppLocalizations.of(context)
+                                                .translate("Breed:") +
+                                            ' ' +
+                                            snapshot.data[index].breed,
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle2,
                                         textAlign: TextAlign.start,
                                       ),
+                                      leading: (snapshot.data[index].sex ==
+                                              "Female")
+                                          ? FaIcon(FontAwesomeIcons.dog,
+                                              color: Colors.pinkAccent)
+                                          : FaIcon(FontAwesomeIcons.dog,
+                                              color: Colors.lightBlueAccent),
                                     ),
                                     secondaryActions: <Widget>[
                                       IconSlideAction(
