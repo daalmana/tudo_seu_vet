@@ -174,7 +174,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                 AppLocalizations.of(context)
                                         .translate("Phone:") +
                                     widget.contact.phone,
-                                style: Theme.of(context).textTheme.bodyText2,
+                                style: Theme.of(context).textTheme.subtitle1,
                               ),
                             ),
                             IconButton(
@@ -186,11 +186,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                               onPressed: () {
                                 launchWhatsApp(
                                   number: widget.contact.phone,
-                                  message: AppLocalizations.of(context)
-                                          .translate("Hello") +
-                                      ' ' +
-                                      widget.contact.name +
-                                      ', ',
+                                  message: '',
                                 );
                               },
                             ),
@@ -211,7 +207,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                               .translate("Phone 2:") +
                                           widget.contact.phone,
                                       style:
-                                          Theme.of(context).textTheme.bodyText2,
+                                          Theme.of(context).textTheme.subtitle1,
                                     ),
                                   ),
                                   IconButton(
@@ -223,11 +219,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                     onPressed: () {
                                       launchWhatsApp(
                                         number: widget.contact.phone,
-                                        message: AppLocalizations.of(context)
-                                                .translate("Hello") +
-                                            ' ' +
-                                            widget.contact.name +
-                                            ', ',
+                                        message: '',
                                       );
                                     },
                                   ),
@@ -248,7 +240,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                               .translate("Phone 3:") +
                                           widget.contact.phone,
                                       style:
-                                          Theme.of(context).textTheme.bodyText2,
+                                          Theme.of(context).textTheme.subtitle1,
                                     ),
                                   ),
                                   IconButton(
@@ -260,11 +252,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                     onPressed: () {
                                       launchWhatsApp(
                                         number: widget.contact.phone,
-                                        message: AppLocalizations.of(context)
-                                                .translate("Hello") +
-                                            ' ' +
-                                            widget.contact.name +
-                                            ', ',
+                                        message: '',
                                       );
                                     },
                                   ),
@@ -306,7 +294,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                           ),
                           onPressed: () {
                             customLaunch(
-                              'mailto:${widget.contact.email}?subject=${AppLocalizations.of(context).translate("Contact info:")}Bom%20dia&body=Olá%20${widget.contact.name},\n',
+                              'mailto:${widget.contact.email}',
                             );
                           },
                         ),
@@ -320,7 +308,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                 ),
                                 onPressed: () {
                                   customLaunch(
-                                    'mailto:${widget.contact.email2}?subject=Bom%20dia&body=Olá%20${widget.contact.name},\n',
+                                    'mailto:${widget.contact.email2}',
                                   );
                                 },
                               ),

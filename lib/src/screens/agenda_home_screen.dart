@@ -75,7 +75,8 @@ class _AgendaHomeScreenState extends State<AgendaHomeScreen> {
                     itemBuilder: (context, index) {
                       Consult event = _selectedEvents[index];
                       return ListTile(
-                        title: Text(event.contactId),
+                        title:
+                            Text(event.contactId + '\nCom: ' + event.patientId),
                         subtitle: Text(
                           formatter.format(
                             event.date,

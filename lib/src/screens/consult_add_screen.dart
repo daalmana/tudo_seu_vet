@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:tudo_seu_vet/src/screens/consult_list_screen.dart';
+
 import '../../src/utils/app_localizations.dart';
 
 import '../../src/models/consults.dart';
@@ -5,7 +8,7 @@ import '../../src/models/contacts.dart';
 import '../../src/models/patients.dart';
 import '../../src/providers/consult_provider.dart';
 import '../../src/providers/contact_provider.dart';
-import '../../src/providers/patient_provider.dart';
+// import '../../src/providers/patient_provider.dart';
 import '../../src/widgets/loading_spinner.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
@@ -78,7 +81,7 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
   @override
   Widget build(BuildContext context) {
     final contactProvider = Provider.of<ContactProvider>(context);
-    final patientProvider = Provider.of<PatientProvider>(context);
+    // final patientProvider = Provider.of<PatientProvider>(context);
     final consultProvider = Provider.of<ConsultProvider>(context);
     final format = DateFormat("dd-MM-yyyy / HH:mm");
     final initialValue = DateTime.now();
@@ -105,7 +108,7 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                   ),
             ),
             actions: [
-              (widget.consult != null)
+              (widget.consult != null && widget.consult.consultReady != true)
                   ? Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: IconButton(
@@ -118,7 +121,7 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                backgroundColor: Colors.yellowAccent,
+                                backgroundColor: Colors.white,
                                 title: Text(
                                   'Excluir consulta?',
                                   style: TextStyle(color: Colors.redAccent),
@@ -134,10 +137,12 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                                   ),
                                   FlatButton(
                                     onPressed: () {
-                                      // consultProvider.removeConsult(
-                                      //     widget.consult.consultId);
-                                      // Navigator.popAndPushNamed(
-                                      //     context, ConsultListScreen.routeName);
+                                      consultProvider.removeConsult(
+                                          widget.consult.consultId);
+                                      Navigator.popUntil(
+                                          context,
+                                          ModalRoute.withName(
+                                              ConsultListScreen.routeName));
                                     },
                                     child: Text('Ok'),
                                   ),
@@ -246,6 +251,7 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                                         MediaQuery.of(context).size.width / 1.5,
                                     child: widget.consult == null
                                         ? DropdownButtonFormField<String>(
+                                            value: contactList,
                                             decoration: InputDecoration(
                                                 hintText:
                                                     'Selecione o cliente'),
@@ -267,6 +273,7 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                                                 () {
                                                   this.contactList =
                                                       newValueSelected;
+                                                  contactList2 = null;
                                                 },
                                               );
                                             },
@@ -294,10 +301,18 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                           ),
                           SizedBox(height: 20.0),
                           StreamBuilder<List<Patient>>(
-                            stream: patientProvider.patients,
+                            stream: FirebaseFirestore.instance
+                                .collection('users')
+                                .doc(user.uid)
+                                .collection('patients')
+                                .where('owner', isEqualTo: contactList)
+                                .snapshots()
+                                .map((snapshot) => snapshot.docs
+                                    .map((doc) => Patient.fromJson(doc.data()))
+                                    .toList()),
                             builder: (context, snapshot) {
                               if (!snapshot.hasData) {
-                                return LoadingSpinner(Colors.white);
+                                return LoadingSpinner(Colors.blue);
                               }
                               return Row(
                                 mainAxisAlignment:
@@ -315,7 +330,7 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                                         MediaQuery.of(context).size.width / 1.5,
                                     child: widget.consult == null
                                         ? DropdownButtonFormField<String>(
-                                            // TODO create dynamic list only showing the patients when client is selected
+                                            value: contactList2,
                                             decoration: InputDecoration(
                                                 hintText:
                                                     'Selecione o patiente'),

@@ -24,14 +24,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: FlatButton(
-          onPressed: () {},
-          child: Icon(
-            Icons.menu,
-            color: Theme.of(context).accentColor,
-            size: 20.0,
-          ),
-        ),
         title: Text(
           'Menu',
           style: Theme.of(context).textTheme.headline6.copyWith(
