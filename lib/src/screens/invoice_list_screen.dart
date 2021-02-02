@@ -1,4 +1,5 @@
 import 'package:tudo_seu_vet/src/utils/app_localizations.dart';
+import 'package:tudo_seu_vet/src/widgets/loading_spinner.dart';
 
 import '../../src/models/consults.dart';
 import '../../src/providers/consult_provider.dart';
@@ -25,6 +26,9 @@ class _InvoiceListScreenState extends State<InvoiceListScreen> {
       body: StreamBuilder<List<Consult>>(
         stream: consultProvider.consultsInvoice,
         builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            LoadingSpinner(Colors.green);
+          }
           return ListView.separated(
             itemCount: snapshot.hasData ? snapshot.data.length : 0,
             separatorBuilder: (BuildContext context, int index) => Divider(

@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:tudo_seu_vet/src/screens/contact_detail_screen.dart';
+import 'package:tudo_seu_vet/src/widgets/loading_spinner.dart';
 
 import '../../src/models/contacts.dart';
 import '../../src/providers/contact_provider.dart';
@@ -31,6 +32,9 @@ class _ContactListScreenState extends State<ContactListScreen> {
       body: StreamBuilder<List<Contact>>(
         stream: contactProvider.contacts,
         builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return LoadingSpinner(Colors.green);
+          }
           return ListView.separated(
             itemCount: snapshot.hasData ? snapshot.data.length : 0,
             separatorBuilder: (BuildContext context, int index) => Divider(

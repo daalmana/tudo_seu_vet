@@ -59,6 +59,10 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18.0),
                         color: Colors.white.withOpacity(0.9),
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1.0,
+                        ),
                       ),
                       width: MediaQuery.of(context).size.width / 0.9,
                       child: Padding(

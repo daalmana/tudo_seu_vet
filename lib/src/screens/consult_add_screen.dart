@@ -226,6 +226,10 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18.0),
                         color: Colors.white.withOpacity(0.9),
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1.0,
+                        ),
                       ),
                       child: Column(
                         children: [
@@ -482,6 +486,10 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(18.0),
                         color: Colors.white.withOpacity(0.9),
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1.0,
+                        ),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:tudo_seu_vet/src/widgets/loading_spinner.dart';
 
 import '../../src/models/patients.dart';
 import '../../src/providers/contact_provider.dart';
@@ -31,6 +32,9 @@ class _PatientListScreenState extends State<PatientListScreen> {
       body: StreamBuilder<List<Patient>>(
         stream: patientProvider.patients,
         builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return LoadingSpinner(Colors.green);
+          }
           return ListView.separated(
             itemCount: snapshot.hasData ? snapshot.data.length : 0,
             separatorBuilder: (BuildContext context, int index) => Divider(
