@@ -9,7 +9,7 @@ class Patient {
   final String breed;
   final String sex;
   final String color;
-  final String age;
+  final String animalType;
   final String chip;
   final String origin;
   final String weight;
@@ -23,7 +23,7 @@ class Patient {
     this.breed,
     this.sex,
     this.color,
-    this.age,
+    this.animalType,
     this.chip,
     this.origin,
     this.weight,
@@ -39,7 +39,7 @@ class Patient {
       breed: json['breed'],
       sex: json['sex'],
       color: json['color'],
-      age: json['age'],
+      animalType: json['animalType'],
       chip: json['chip'],
       origin: json['origin'],
       weight: json['weight'],
@@ -56,7 +56,7 @@ class Patient {
       'breed': breed,
       'sex': sex,
       'color': color,
-      'age': age,
+      'animalType': animalType,
       'chip': chip,
       'origin': origin,
       'weight': weight,

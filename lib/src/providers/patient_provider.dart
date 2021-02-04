@@ -14,7 +14,7 @@ class PatientProvider with ChangeNotifier {
   String _breed;
   String _sex;
   String _color;
-  String _age;
+  String _animalType;
   String _chip;
   String _origin;
   String _weight;
@@ -28,7 +28,7 @@ class PatientProvider with ChangeNotifier {
   String get breed => _breed;
   String get sex => _sex;
   String get color => _color;
-  String get age => _age;
+  String get animalType => _animalType;
   String get chip => _chip;
   String get origin => _origin;
   String get weight => _weight;
@@ -70,8 +70,8 @@ class PatientProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  set changeAge(String age) {
-    _age = age;
+  set changeAnimalType(String animalType) {
+    _animalType = animalType;
     notifyListeners();
   }
 
@@ -101,7 +101,7 @@ class PatientProvider with ChangeNotifier {
       _breed = patient.breed;
       _sex = patient.sex;
       _color = patient.color;
-      _age = patient.age;
+      _animalType = patient.animalType;
       _chip = patient.chip;
       _origin = patient.origin;
       _weight = patient.weight;
@@ -114,7 +114,7 @@ class PatientProvider with ChangeNotifier {
       _breed = null;
       _sex = null;
       _color = null;
-      _age = null;
+      _animalType = null;
       _chip = null;
       _origin = null;
       _weight = null;
@@ -133,7 +133,7 @@ class PatientProvider with ChangeNotifier {
         breed: _breed,
         sex: _sex,
         color: _color,
-        age: _age,
+        animalType: _animalType,
         chip: _chip,
         origin: _origin,
         weight: _weight,
@@ -149,7 +149,7 @@ class PatientProvider with ChangeNotifier {
         breed: _breed,
         sex: _sex,
         color: _color,
-        age: _age,
+        animalType: _animalType,
         chip: _chip,
         origin: _origin,
         weight: _weight,

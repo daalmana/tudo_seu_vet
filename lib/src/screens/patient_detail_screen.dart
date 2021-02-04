@@ -104,6 +104,21 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
                               children: [
                                 Text(
                                   AppLocalizations.of(context)
+                                      .translate("Type of animal:"),
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)
+                                      .translate(widget.patient.animalType),
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)
                                       .translate("Breed:"),
                                 ),
                                 Text(
@@ -135,7 +150,8 @@ class _PatientDetailScreenState extends State<PatientDetailScreen> {
                                       .translate("Sex:"),
                                 ),
                                 Text(
-                                  widget.patient.sex,
+                                  AppLocalizations.of(context)
+                                      .translate(widget.patient.sex),
                                   style: Theme.of(context).textTheme.bodyText1,
                                   textAlign: TextAlign.center,
                                 ),

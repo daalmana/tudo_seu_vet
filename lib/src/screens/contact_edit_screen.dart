@@ -568,7 +568,9 @@ class _ContactEditScreenState extends State<ContactEditScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: DateTimeField(
-                          initialValue: DateTime.now(),
+                          initialValue: (widget.contact != null)
+                              ? DateTime.parse(widget.contact.dayOfBirth)
+                              : DateTime.now(),
                           controller: dayOfBirthController,
                           style: Theme.of(context).textTheme.bodyText2,
                           decoration: InputDecoration(
@@ -618,7 +620,9 @@ class _ContactEditScreenState extends State<ContactEditScreen> {
                             labelText: AppLocalizations.of(context)
                                 .translate("Registered:"),
                           ),
-                          initialValue: DateTime.now(),
+                          initialValue: (widget.contact != null)
+                              ? DateTime.parse(widget.contact.register)
+                              : DateTime.now(),
                           format: format,
                           onShowPicker: (context, currentValue) {
                             return showDatePicker(

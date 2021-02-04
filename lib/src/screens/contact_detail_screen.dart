@@ -385,7 +385,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                     .translate("Registered:") +
                                 ' ' +
                                 formatter.format(
-                                  DateTime.parse(widget.contact.dayOfBirth),
+                                  DateTime.parse(widget.contact.register),
                                 ),
                             style: Theme.of(context).textTheme.bodyText2,
                             textAlign: TextAlign.center,
@@ -511,10 +511,14 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                                       ),
                                       leading: (snapshot.data[index].sex ==
                                               "Female")
-                                          ? FaIcon(FontAwesomeIcons.dog,
+                                          ? FaIcon(FontAwesomeIcons.paw,
                                               color: Colors.pinkAccent)
-                                          : FaIcon(FontAwesomeIcons.dog,
+                                          : FaIcon(FontAwesomeIcons.paw,
                                               color: Colors.lightBlueAccent),
+                                      trailing: Text(
+                                        AppLocalizations.of(context).translate(
+                                            snapshot.data[index].animalType),
+                                      ),
                                     ),
                                     secondaryActions: <Widget>[
                                       IconSlideAction(
@@ -604,6 +608,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
           ),
           backgroundColor: Theme.of(context).primaryColor,
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       ),
     );
   }

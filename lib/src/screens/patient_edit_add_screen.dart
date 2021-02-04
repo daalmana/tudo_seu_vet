@@ -22,12 +22,25 @@ class _PatientEditAddScreenState extends State<PatientEditAddScreen> {
   final _formKey = GlobalKey<FormState>();
   final format = DateFormat("dd-MM-yyyy");
 
+  List<String> _petType = <String>[
+    'Male',
+    'Female',
+  ];
+
+  List<String> _animalType = <String>[
+    'Dog',
+    'Cat',
+  ];
+
+  var _selectedSex;
+  var _selectedAnimal;
+
   final nameController = TextEditingController();
   final dayOfBirthController = TextEditingController();
   final breedController = TextEditingController();
   final sexController = TextEditingController();
   final colorController = TextEditingController();
-  final ageController = TextEditingController();
+  final animalTypeController = TextEditingController();
   final chipController = TextEditingController();
   final originController = TextEditingController();
   final weightController = TextEditingController();
@@ -46,7 +59,7 @@ class _PatientEditAddScreenState extends State<PatientEditAddScreen> {
       breedController.text = widget.patient.breed;
       sexController.text = widget.patient.sex;
       colorController.text = widget.patient.color;
-      ageController.text = widget.patient.age;
+      animalTypeController.text = widget.patient.animalType;
       chipController.text = widget.patient.chip;
       originController.text = widget.patient.origin;
       weightController.text = widget.patient.weight;
@@ -64,7 +77,7 @@ class _PatientEditAddScreenState extends State<PatientEditAddScreen> {
     breedController.dispose();
     sexController.dispose();
     colorController.dispose();
-    ageController.dispose();
+    animalTypeController.dispose();
     chipController.dispose();
     originController.dispose();
     weightController.dispose();
@@ -197,6 +210,46 @@ class _PatientEditAddScreenState extends State<PatientEditAddScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(4.0),
+                      child: DropdownButtonFormField(
+                        items: _animalType
+                            .map(
+                              (value) => DropdownMenuItem(
+                                child: Text(AppLocalizations.of(context)
+                                    .translate(value)),
+                                value: value,
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (selectedAnimal) {
+                          setState(() {
+                            _selectedAnimal = selectedAnimal;
+                          });
+                        },
+                        value: _selectedAnimal,
+                        isExpanded: false,
+                        style: Theme.of(context).textTheme.bodyText2,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          filled: true,
+                          fillColor: Colors.white.withOpacity(0.9),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 15.0, vertical: 10.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          labelText: AppLocalizations.of(context)
+                              .translate("Type of animal:"),
+                        ),
+                        onSaved: (value) {
+                          patientProvider.changeAnimalType = value;
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
                       child: TextFormField(
                         controller: breedController,
                         keyboardType: TextInputType.text,
@@ -259,9 +312,23 @@ class _PatientEditAddScreenState extends State<PatientEditAddScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(4.0),
-                      child: TextFormField(
-                        controller: sexController,
-                        keyboardType: TextInputType.text,
+                      child: DropdownButtonFormField(
+                        items: _petType
+                            .map(
+                              (value) => DropdownMenuItem(
+                                child: Text(AppLocalizations.of(context)
+                                    .translate(value)),
+                                value: value,
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (selectedAnimalSex) {
+                          setState(() {
+                            _selectedSex = selectedAnimalSex;
+                          });
+                        },
+                        value: _selectedSex,
+                        isExpanded: false,
                         style: Theme.of(context).textTheme.bodyText2,
                         decoration: InputDecoration(
                           isDense: true,
@@ -303,32 +370,6 @@ class _PatientEditAddScreenState extends State<PatientEditAddScreen> {
                         ),
                         onSaved: (value) {
                           patientProvider.changeColor = value;
-                        },
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: TextFormField(
-                        controller: ageController,
-                        keyboardType: TextInputType.phone,
-                        style: Theme.of(context).textTheme.bodyText2,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          filled: true,
-                          fillColor: Colors.white.withOpacity(0.9),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 15.0, vertical: 10.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          labelText:
-                              AppLocalizations.of(context).translate("Age:"),
-                        ),
-                        onSaved: (value) {
-                          patientProvider.changeAge = value;
                         },
                       ),
                     ),

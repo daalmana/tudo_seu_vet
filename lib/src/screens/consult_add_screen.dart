@@ -237,7 +237,7 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                             stream: contactProvider.contacts,
                             builder: (context, snapshot) {
                               if (!snapshot.hasData) {
-                                return LoadingSpinner(Colors.white);
+                                return LoadingSpinner(Colors.green);
                               }
                               return Row(
                                 mainAxisAlignment:
@@ -316,7 +316,7 @@ class _AddConsultScreenState extends State<AddConsultScreen> {
                                     .toList()),
                             builder: (context, snapshot) {
                               if (!snapshot.hasData) {
-                                return LoadingSpinner(Colors.blue);
+                                return LoadingSpinner(Colors.green);
                               }
                               return Row(
                                 mainAxisAlignment:
